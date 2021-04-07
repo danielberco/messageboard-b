@@ -18,24 +18,24 @@ const int NUM_TEST = 2000;
 //Test 1 
 
 TEST_CASE("Test 1: Text overiding 1"){
-    Board b;
-    b.post(0, 0, Direction::Horizontal, "aaaaaaa");
-    CHECK(b.read(0, 0, Direction::Horizontal, 7) == "aaaaaaa");
+    Board board;
+    board.post(0, 0, Direction::Horizontal, "aaaaaaa");
+    CHECK(board.read(0, 0, Direction::Horizontal, 7) == "aaaaaaa");
 
-    b.post(0, 0, Direction::Vertical, "bbbbbb");
-    CHECK(b.read(0, 0, Direction::Horizontal, 7) == "baaaaaa");
-    b.post(0, 1, Direction::Vertical, "cccccc");
-    CHECK(b.read(0, 0, Direction::Horizontal, 7) == "bcaaaaa");
-    b.post(0, 2, Direction::Vertical, "dddddd");
-    CHECK(b.read(0, 0, Direction::Horizontal, 7) == "bcdaaaa");
-    b.post(0, 3, Direction::Vertical, "eeeeee");
-    CHECK(b.read(0, 0, Direction::Horizontal, 7) == "bcdeaaa");
-    b.post(0, 4, Direction::Vertical, "ffffff");
-    CHECK(b.read(0, 0, Direction::Horizontal, 7) == "bcdefaa");
-    b.post(0, 5, Direction::Vertical, "gggggg");
-    CHECK(b.read(0, 0, Direction::Horizontal, 7) == "bcdefga");
-    b.post(0, 6, Direction::Vertical, "hhhhhh");
-    CHECK(b.read(0, 0, Direction::Horizontal, 7) == "bcdefgh");
+    board.post(0, 0, Direction::Vertical, "bbbbbb");
+    CHECK(board.read(0, 0, Direction::Horizontal, 7) == "baaaaaa");
+    board.post(0, 1, Direction::Vertical, "cccccc");
+    CHECK(board.read(0, 0, Direction::Horizontal, 7) == "bcaaaaa");
+    board.post(0, 2, Direction::Vertical, "dddddd");
+    CHECK(board.read(0, 0, Direction::Horizontal, 7) == "bcdaaaa");
+    board.post(0, 3, Direction::Vertical, "eeeeee");
+    CHECK(board.read(0, 0, Direction::Horizontal, 7) == "bcdeaaa");
+    board.post(0, 4, Direction::Vertical, "ffffff");
+    CHECK(board.read(0, 0, Direction::Horizontal, 7) == "bcdefa");
+    board.post(0, 5, Direction::Vertical, "gggggg");
+    CHECK(board.read(0, 0, Direction::Horizontal, 7) == "bcdefgsfsaa");
+    board.post(0, 6, Direction::Vertical, "hhhhhh");
+    CHECK(board.read(0, 0, Direction::Horizontal, 7) == "bcdefsagh");
 }
 
 //generating a random message 
@@ -73,9 +73,9 @@ TEST_CASE("Test 3: Read an empty board"){
         unsigned rand_col = rand()%COL_MAX;
         Direction rand_direction = (rand()%2)==1 ? Direction::Horizontal : Direction::Vertical;
         unsigned rand_length = rand()%LENGTH;
-        string empty_message(rand_length, '_');
+        string empty(rand_length, '_');
 
-        CHECK(b.read(rand_row, rand_col, rand_direction, rand_length) == empty_message);
+        CHECK(b.read(rand_row, rand_col, rand_direction, rand_length) == empty);
     }
 }
 
