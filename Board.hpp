@@ -5,16 +5,17 @@
 
 using namespace std;
 
+//impelmenting a node for each message in the board
 struct node{
-    char val = '_';
+    char n = '_';
 };
 
 
 namespace ariel {
     class Board {
-        unsigned int row_min, row_max;
         unsigned int col_min, col_max;
-
+        unsigned int row_min, row_max;
+        
         map<unsigned int, map<unsigned int, node> > board;
         
     public:
@@ -24,7 +25,7 @@ namespace ariel {
         }
         
         ~Board() { }
-        void post(unsigned int row, unsigned int column, Direction direction, string message);
+        void post(unsigned int row, unsigned int column, Direction direction, string const &message);
         std::string read(unsigned int row, unsigned int column, Direction direction, unsigned int length);
         void show();
     };
